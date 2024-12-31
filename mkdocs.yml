@@ -1,0 +1,55 @@
+site_name: Colter+
+site_description: Personal blog and project portfolio of Colter Dahlberg.
+site_author: Colter Dahlberg
+site_url: https://colter.plus
+repo_url: https://github.com/ColterD/colterplus
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.top
+    - navigation.footer
+    - navigation.tracking
+    - navigation.expand
+    - navigation.indexes
+    - navigation.sections
+    - toc.follow
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: github-light
+      primary: black
+      accent: deep purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: github-dark
+      primary: white
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - awesome-pages
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Projects: projects/index.md
+  - Blog: blog/index.md
+  - Contact: contact.md
