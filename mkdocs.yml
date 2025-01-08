@@ -1,9 +1,21 @@
 site_name: Colter+
 site_description: Personal blog and project portfolio of Colter Dahlberg.
-site_author: Colter Dahlberg
-site_url: https://colter.plus
+site_author: Colter
+site_url: https://colterd.github.io/colterplus/
+
 repo_url: https://github.com/ColterD/colterplus
 repo_name: ColterD/colterplus
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Resume: resume.md
+  - Projects: projects.md
+  - Blog:
+    - Blog Home: blog.md
+    - Posts:
+      - First Post: blog/first-post.md
+      - Second Post: blog/second-post.md
 
 theme:
   name: material
@@ -31,6 +43,7 @@ theme:
     - content.tabs.link
     - content.tooltips
     - content.code.annotate
+  language: en
   palette:
     - media: "(prefers-color-scheme)"
       toggle:
@@ -46,39 +59,45 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+  logo: assets/logo.png
+  favicon: assets/favicon.png
   icon:
-    logo: material/account
     repo: fontawesome/brands/github
-  favicon: favicon.png
-  custom_dir: docs/overrides
-
-plugins:
-  - search
-  - awesome-pages
-  - blog:
-      enabled: true
-      readtime: true
-      blog_dir: blog
-
-markdown_extensions:
-  - admonition      
-
-nav:
-  - Home: index.md
-  - About: about.md
-  - Projects: projects/index.md
-  - Blog: blog/index.md
-  - Contact: contact.md
+    docker: material/docker
+    project: fontawesome/solid/diagram-project
+    resume: fontawesome/solid/file-lines
+    envelope: fontawesome/solid/envelope
+    gear: fontawesome/solid/gear
 
 extra_css:
   - stylesheets/extra.css
 
-extra:
-  social:
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/yourusername
-    - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in/yourusername
-    - icon: fontawesome/brands/mastodon
-      link: https://your.mastodon.server/@yourusername
-    # Add more social links as needed
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true

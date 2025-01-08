@@ -8,6 +8,24 @@ body {
     margin: 0;
     padding: 0;
     color: var(--md-text-color);
+    /* Add background image */
+    background-image: url("/assets/images/background.jpg"); /* Now uses locally hosted image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional: Make background fixed during scrolling */
+}
+
+/* Add overlay to body to make text more readable */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--md-default-bg-color);
+    opacity: 0.7;
+    z-index: -1;
 }
 
 a {
@@ -21,12 +39,11 @@ header {
 }
 
 .md-header {
-    box-shadow: 0 0 0.2rem rgba(0,0,0,.1),0 0.2rem 0.4rem rgba(0,0,0,.2);
+    box-shadow: 0 0 0.2rem rgba(0,0,0,.1), 0 0.2rem 0.4rem rgba(0,0,0,.2);
 }
 
 .md-header__inner {
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
+    padding: 0 0.4rem;
 }
 
 .md-header__title {
@@ -55,7 +72,7 @@ header {
     background-color: var(--md-default-bg-color);
     border: 1px solid var(--md-border-color);
     border-radius: 0.2rem;
-    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,.2);
+    box-shadow: 0 0 0.2rem 0.4rem rgba(0,0,0,.2);
 }
 
 .md-search__input {
@@ -70,7 +87,7 @@ header {
 
 /* Content Area */
 .md-content {
-    background-color: var(--md-default-bg-color);
+    background-color: transparent;
     padding: 2rem;
 }
 
@@ -79,7 +96,7 @@ header {
     padding: 3rem;
     border: 1px solid var(--md-border-color);
     border-radius: 0.2rem;
-    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,.1);
+    box-shadow: 0 0 0.2rem 0.4rem rgba(0,0,0,.1);
 }
 
 /* Footer */
@@ -89,8 +106,7 @@ header {
 }
 
 .md-footer-meta {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 0 2rem;
     border-top: 1px solid var(--md-border-color);
 }
 
@@ -177,7 +193,7 @@ p {
 }
 
 .md-typeset blockquote p {
-  margin-bottom: 0; /* Remove bottom margin for last paragraph in blockquote */
+  margin-bottom: 0;
 }
 
 /* Navigation Menu Dropdowns */
@@ -199,7 +215,7 @@ p {
     background-color: var(--md-default-bg-color);
     border: 1px solid var(--md-border-color);
     border-radius: 0.2rem;
-    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
     padding: 0.5rem 0;
 }
 
@@ -246,76 +262,124 @@ p {
   border: 2px solid var(--md-default-bg-color);
 }
 
-/* Custom Light Scheme */
+/* Color Scheme Variables */
 :root {
-  --md-custom-light--bg-color: #ffffff; /* GitHub Light: Background */
-  --md-custom-light--fg-color: #24292f; /* GitHub Light: Text */
-  --md-custom-light--fg-color--light: #d8dee4; /* GitHub Light: Borders */
-  --md-custom-light--header-bg-color: #ffffff; /* GitHub Light: Header Background */
-  --md-custom-light--accent-fg-color: #24292f; /* GitHub Light: Accent Text */
-  --md-custom-light--border-color: #d8dee4; /* GitHub Light: Border */
-  --md-custom-light--text-color: #24292f; /* GitHub Light: Text */
-  --md-custom-light--footer-bg-color: #f5f5f5; /* GitHub Light: Footer Background */
-  --md-custom-light--footer-fg-color: #646c75; /* GitHub Light: Footer Text */
-  --md-custom-light--code-bg-color: #f0f0f0; /* GitHub Light: Code Background */
-  --md-custom-light--code-fg-color: #24292f; /* GitHub Light: Code Text */
-  --md-custom-light--typeset-quote-bg-color: rgba(0, 0, 0, 0.05); /* GitHub Light: Blockquote Background */
-  --md-custom-light--typeset-quote-border-color: #d8dee4; /* GitHub Light: Blockquote Border */
+    --md-charcoal: #212A31; /* Darkest */
+    --md-slate: #2E3944; /* Dark Gray */
+    --md-teal: #124E66; /* Teal */
+    --md-light-gray: #748D92; /* Light Gray */
+    --md-off-white: #D3D9D4; /* Off-White */
+  }
+  
+  /* Custom Light Scheme */
+  :root {
+      --md-custom-light--bg-color: var(--md-off-white); /* Light Blue: Background */
+      --md-custom-light--fg-color: var(--md-charcoal); /* Darkest Blue: Text */
+      --md-custom-light--fg-color--light: var(--md-slate); /* Dark Teal: Borders */
+      --md-custom-light--header-bg-color: var(--md-charcoal); /* Darkest Blue: Header Background */
+      --md-custom-light--accent-fg-color: var(--md-teal); /* Rusty Orange: Accent Text */
+      --md-custom-light--border-color: var(--md-slate); /* Dark Teal: Border */
+      --md-custom-light--text-color: var(--md-charcoal); /* Darkest Blue: Text */
+      --md-custom-light--footer-bg-color: var(--md-light-gray); /* Light Teal: Footer Background */
+      --md-custom-light--footer-fg-color: var(--md-charcoal); /* Darkest Blue: Footer Text */
+      --md-custom-light--code-bg-color: var(--md-off-white); /* Light Blue: Code Background */
+      --md-custom-light--code-fg-color: var(--md-charcoal); /* Darkest Blue: Code Text */
+      --md-custom-light--typeset-quote-bg-color: rgba(0, 0, 0, 0.05); /* Light Blue: Blockquote Background */
+      --md-custom-light--typeset-quote-border-color: var(--md-slate); /* Dark Teal: Blockquote Border */
+  }
+  
+  /* Custom Dark Scheme */
+  :root {
+      --md-custom-dark--bg-color: var(--md-charcoal); /* Darkest Blue: Background */
+      --md-custom-dark--fg-color: var(--md-off-white); /* Light Blue: Text */
+      --md-custom-dark--fg-color--light: var(--md-light-gray); /* Light Teal: Borders */
+      --md-custom-dark--header-bg-color: var(--md-slate); /* Dark Teal: Header Background */
+      --md-custom-dark--accent-fg-color: var(--md-teal); /* Rusty Orange: Accent Text */
+      --md-custom-dark--border-color: var(--md-light-gray); /* Light Teal: Border */
+      --md-custom-dark--text-color: var(--md-off-white); /* Light Blue: Text */
+      --md-custom-dark--footer-bg-color: var(--md-charcoal); /* Darkest Blue: Footer Background */
+      --md-custom-dark--footer-fg-color: var(--md-off-white); /* Light Blue: Footer Text */
+      --md-custom-dark--code-bg-color: var(--md-slate); /* Dark Teal: Code Background */
+      --md-custom-dark--code-fg-color: var(--md-off-white); /* Light Blue: Code Text */
+      --md-custom-dark--typeset-quote-bg-color: rgba(255, 255, 255, 0.05); /* Light Blue: Blockquote Background */
+      --md-custom-dark--typeset-quote-border-color: var(--md-light-gray); /* Light Teal: Blockquote Border */
+  }
+  
+  /* Colors for Light Mode */
+  [data-md-color-scheme="custom-light"] {
+      --md-primary-fg-color: var(--md-custom-light--accent-fg-color);
+      --md-default-bg-color: var(--md-custom-light--bg-color);
+      --md-default-fg-color: var(--md-custom-light--fg-color);
+      --md-default-fg-color--light: var(--md-custom-light--fg-color--light);
+      --md-typeset-a-color: var(--md-custom-light--accent-fg-color);
+      --md-accent-fg-color: var(--md-custom-light--accent-fg-color);
+      --md-header-background-color: var(--md-custom-light--header-bg-color);
+      --md-border-color: var(--md-custom-light--border-color);
+      --md-text-color: var(--md-custom-light--text-color);
+      --md-footer-bg-color: var(--md-custom-light--footer-bg-color);
+      --md-footer-fg-color: var(--md-custom-light--footer-fg-color);
+      --md-code-bg-color: var(--md-custom-light--code-bg-color);
+      --md-code-fg-color: var(--md-custom-light--code-fg-color);
+      --md-typeset-quote-bg-color: var(--md-custom-light--typeset-quote-bg-color);
+      --md-typeset-quote-border-color: var(--md-custom-light--typeset-quote-border-color);
+  }
+  
+  /* Colors for Dark Mode */
+  [data-md-color-scheme="custom-dark"] {
+      --md-primary-fg-color: var(--md-custom-dark--accent-fg-color);
+      --md-default-bg-color: var(--md-custom-dark--bg-color);
+      --md-default-fg-color: var(--md-custom-dark--fg-color);
+      --md-default-fg-color--light: var(--md-custom-dark--fg-color--light);
+      --md-typeset-a-color: var(--md-custom-dark--accent-fg-color);
+      --md-accent-fg-color: var(--md-custom-dark--accent-fg-color);
+      --md-header-background-color: var(--md-custom-dark--header-bg-color);
+      --md-border-color: var(--md-custom-dark--border-color);
+      --md-text-color: var(--md-custom-dark--text-color);
+      --md-footer-bg-color: var(--md-custom-dark--footer-bg-color);
+      --md-footer-fg-color: var(--md-custom-dark--footer-fg-color);
+      --md-code-bg-color: var(--md-custom-dark--code-bg-color);
+      --md-code-fg-color: var(--md-custom-dark--code-fg-color);
+      --md-typeset-quote-bg-color: var(--md-custom-dark--typeset-quote-bg-color);
+      --md-typeset-quote-border-color: var(--md-custom-dark--typeset-quote-border-color);
+  }
+
+/* Grid Cards Styling */
+.grid.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Adjust minmax as needed */
+    gap: 1rem;
 }
 
-/* Custom Dark Scheme */
-:root {
-  --md-custom-dark--bg-color: #0d1117; /* GitHub Dark: Background */
-  --md-custom-dark--fg-color: #c9d1d9; /* GitHub Dark: Text */
-  --md-custom-dark--fg-color--light: #21262d; /* GitHub Dark: Borders */
-  --md-custom-dark--header-bg-color: #0d1117; /* GitHub Dark: Header Background */
-  --md-custom-dark--accent-fg-color: #c9d1d9; /* GitHub Dark: Accent Text */
-  --md-custom-dark--border-color: #21262d; /* GitHub Dark: Border */
-  --md-custom-dark--text-color: #c9d1d9; /* GitHub Dark: Text */
-  --md-custom-dark--footer-bg-color: #0d1117; /* GitHub Dark: Footer Background */
-  --md-custom-dark--footer-fg-color: #97989a; /* GitHub Dark: Footer Text */
-  --md-custom-dark--code-bg-color: #21262d; /* GitHub Dark: Code Background */
-  --md-custom-dark--code-fg-color: #c9d1d9; /* GitHub Dark: Code Text */
-  --md-custom-dark--typeset-quote-bg-color: rgba(255, 255, 255, 0.05); /* GitHub Dark: Blockquote Background */
-  --md-custom-dark--typeset-quote-border-color: #c9d1d9; /* GitHub Dark: Blockquote Border */
+.grid.cards > * {
+    border: 1px solid var(--md-border-color);
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,.1);
+    padding: 1rem;
+    border-radius: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
 }
 
-/* Colors for Light Mode */
-[data-md-color-scheme="custom-light"] {
-    --md-primary-fg-color: var(--md-custom-light--fg-color);
-    --md-default-bg-color: var(--md-custom-light--bg-color);
-    --md-default-fg-color: var(--md-custom-light--fg-color);
-    --md-default-fg-color--light: var(--md-custom-light--fg-color--light);
-    --md-typeset-a-color: var(--md-custom-light--accent-fg-color);
-    --md-accent-fg-color: var(--md-custom-light--accent-fg-color);
-    --md-header-background-color: var(--md-custom-light--header-bg-color);
-    --md-border-color: var(--md-custom-light--border-color);
-    --md-text-color: var(--md-custom-light--text-color);
-    --md-footer-bg-color: var(--md-custom-light--footer-bg-color);
-    --md-footer-fg-color: var(--md-custom-light--footer-fg-color);
-    --md-code-bg-color: var(--md-custom-light--code-bg-color);
-    --md-code-fg-color: var(--md-custom-light--code-fg-color);
-    --md-typeset-quote-bg-color: var(--md-custom-light--typeset-quote-bg-color);
-    --md-typeset-quote-border-color: var(--md-custom-light--typeset-quote-border-color);
+.grid.cards .md-button {
+    margin-top: auto; /* Push the button to the bottom */
+    width: max-content;
+    color: var(--md-typeset-a-color);
+    background-color: var(--md-accent-fg-color); /* Use your accent color */
+    color: var(--md-default-bg-color); /* Use a contrasting color for text */
+    border: none; /* Remove default border */
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+    text-transform: uppercase; /* Make the text uppercase */
+    letter-spacing: 0.05rem; /* Adjust letter spacing for a more refined look */
+    font-weight: 600; /* Make the text bolder */
+    border-radius: 0.2rem; /* Add a slight border radius */
+    box-shadow: 0 0.1rem 0.2rem rgba(0,0,0,0.2); /* Add a subtle shadow */
+    transition: all 0.2s ease-in-out; /* Add a smooth transition for hover effects */
 }
 
-/* Colors for Dark Mode */
-[data-md-color-scheme="custom-dark"] {
-    --md-primary-fg-color: var(--md-custom-dark--fg-color);
-    --md-default-bg-color: var(--md-custom-dark--bg-color);
-    --md-default-fg-color: var(--md-custom-dark--fg-color);
-    --md-default-fg-color--light: var(--md-custom-dark--fg-color--light);
-    --md-typeset-a-color: var(--md-custom-dark--accent-fg-color);
-    --md-accent-fg-color: var(--md-custom-dark--accent-fg-color);
-    --md-header-background-color: var(--md-custom-dark--header-bg-color);
-    --md-border-color: var(--md-custom-dark--border-color);
-    --md-text-color: var(--md-custom-dark--text-color);
-    --md-footer-bg-color: var(--md-custom-dark--footer-bg-color);
-    --md-footer-fg-color: var(--md-custom-dark--footer-fg-color);
-    --md-code-bg-color: var(--md-custom-dark--code-bg-color);
-    --md-code-fg-color: var(--md-custom-dark--code-fg-color);
-    --md-typeset-quote-bg-color: var(--md-custom-dark--typeset-quote-bg-color);
-    --md-typeset-quote-border-color: var(--md-custom-dark--typeset-quote-border-color);
+.grid.cards .md-button:hover {
+    background-color: var(--md-accent-fg-color--light); /* Lighten the background color on hover */
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.3); /* Increase shadow on hover */
+    cursor: pointer; /* Change cursor to a pointer on hover */
 }
 
 /* Responsive Styling */
