@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+<!-- Add the header block -->
+{% block header %}
+  {{ super() }}
+{% endblock %}
+
+<!-- Add the footer block -->
+{% block footer %}
+  <footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          {% if config.copyright %}
+            <div class="md-footer-copyright__highlight">
+              {{ config.copyright }}
+            </div>
+          {% endif %}
+          {% if config.extra.generator != false %}
+            Made with
+            <a href="https://www.mkdocs.org" target="_blank" rel="noopener">
+              MkDocs
+            </a>
+          {% endif %}
+        </div>
+        {% if config.extra.social %}
+          <div class="md-footer-social">
+            {% for social in config.extra.social %}
+              <a href="{{ social.link }}" target="_blank" rel="noopener" title="{{ social.name }}" class="md-footer-social__link">
+                {% include ".icons/" + social.icon + ".svg" %}
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </footer>
+{% endblock %}
+
+{% block content %}
+  {% if page.title == "404 - Not found" %}
+  <main class="content">
+    <div class="main-content">
+      {{ page.content }}
+    </div>
+  </main>
+  {% else %}
+  {{ super() }}
+  {% endif %}
+{% endblock %}

@@ -3,6 +3,7 @@ site_description: Personal blog and project portfolio of Colter Dahlberg.
 site_author: Colter Dahlberg
 site_url: https://colter.plus
 repo_url: https://github.com/ColterD/colterplus
+repo_name: ColterD/colterplus
 
 theme:
   name: material
@@ -15,6 +16,7 @@ theme:
     - navigation.expand
     - navigation.indexes
     - navigation.sections
+    - navigation.path
     - toc.follow
     - toc.integrate
     - search.suggest
@@ -24,28 +26,42 @@ theme:
     - content.code.annotate
     - content.tabs.link
     - content.tooltips
+    - header.autohide
+    - content.action.edit
+    - content.tabs.link
+    - content.tooltips
+    - content.code.annotate
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: github-light
-      primary: black
-      accent: deep purple
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/weather-sunny
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
-      scheme: github-dark
-      primary: white
-      accent: deep purple
+      scheme: slate
       toggle:
-        icon: material/weather-night
-        name: Switch to light mode
-
+        icon: material/brightness-4
+        name: Switch to system preference
   icon:
+    logo: material/account
     repo: fontawesome/brands/github
+  favicon: favicon.png
+  custom_dir: docs/overrides
 
 plugins:
   - search
   - awesome-pages
+  - blog:
+      enabled: true
+      readtime: true
+      blog_dir: blog
+
+markdown_extensions:
+  - admonition      
 
 nav:
   - Home: index.md
@@ -53,3 +69,16 @@ nav:
   - Projects: projects/index.md
   - Blog: blog/index.md
   - Contact: contact.md
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/yourusername
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/yourusername
+    - icon: fontawesome/brands/mastodon
+      link: https://your.mastodon.server/@yourusername
+    # Add more social links as needed

@@ -1,3 +1,3 @@
-# Welcome to Colter+
+# Welcome to Colter+ Debug
 
-This is the homepage of your new website. You can start adding content here!
+This is a test site for debugging.
