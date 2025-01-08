@@ -1,416 +1,48 @@
-/* Import Inter Font (from Google Fonts) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Import color overrides with cache-busting */
+@import url("../overrides/colors.css?version=2");
 
-/* General Styling */
-body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    color: var(--md-text-color);
-    /* Add background image */
-    background-image: url("/assets/images/background.jpg"); /* Now uses locally hosted image */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* Optional: Make background fixed during scrolling */
+/* Grid card button alignment */
+.md-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-/* Add overlay to body to make text more readable */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--md-default-bg-color);
-    opacity: 0.7;
-    z-index: -1;
+.md-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure cards take full height of their row */
+  box-sizing: border-box;
 }
 
-a {
-    text-decoration: none;
+.md-card__content {
+  flex-grow: 1; /* Allow content to take up available space */
 }
 
-/* Header */
-header {
-    background-color: var(--md-header-background-color);
-    border-bottom: 1px solid var(--md-border-color);
-}
-
-.md-header {
-    box-shadow: 0 0 0.2rem rgba(0,0,0,.1), 0 0.2rem 0.4rem rgba(0,0,0,.2);
-}
-
-.md-header__inner {
-    padding: 0 0.4rem;
-}
-
-.md-header__title {
-    font-weight: 600;
-}
-
-.md-nav__link {
-    font-weight: 500;
-    margin: 0 0.4rem;
-}
-
-/* Navigation Hover Effect */
-.md-nav__link:hover,
-.md-nav__link:focus {
-    color: var(--md-accent-fg-color);
-    background-color: var(--md-accent-fg-color--transparent);
-}
-
-/* Logo Font */
-.md-logo {
-    font-weight: 600;
-}
-
-/* Search Bar */
-.md-search__form {
-    background-color: var(--md-default-bg-color);
-    border: 1px solid var(--md-border-color);
-    border-radius: 0.2rem;
-    box-shadow: 0 0 0.2rem 0.4rem rgba(0,0,0,.2);
-}
-
-.md-search__input {
-    background-color: transparent;
-    color: var(--md-text-color);
-    font-weight: 500;
-}
-
-.md-search__input::placeholder {
-    color: var(--md-default-fg-color--light);
-}
-
-/* Content Area */
-.md-content {
-    background-color: transparent;
-    padding: 2rem;
-}
-
-.md-content__inner {
-    background-color: var(--md-default-bg-color);
-    padding: 3rem;
-    border: 1px solid var(--md-border-color);
-    border-radius: 0.2rem;
-    box-shadow: 0 0 0.2rem 0.4rem rgba(0,0,0,.1);
-}
-
-/* Footer */
-.md-footer {
-    background-color: var(--md-footer-bg-color);
-    color: var(--md-footer-fg-color);
-}
-
-.md-footer-meta {
-    padding: 0 2rem;
-    border-top: 1px solid var(--md-border-color);
-}
-
-.md-footer-copyright {
-    font-weight: 500;
-}
-
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-}
-
-h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    letter-spacing: -0.05rem;
-}
-
-h2 {
-    font-size: 1.5rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    letter-spacing: -0.025rem;
-}
-
-h3 {
-    font-size: 1.25rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    letter-spacing: -0.0125rem;
-}
-
-p {
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.005rem;
-}
-
-/* Links */
-.md-content a {
-    color: var(--md-typeset-a-color);
-    text-decoration: underline;
-}
-
-.md-content a:hover,
-.md-content a:focus {
-    text-decoration: none;
-}
-
-/* Code Blocks */
-.md-typeset pre {
-  background-color: var(--md-code-bg-color);
-  border: 1px solid var(--md-border-color);
-  border-radius: 0.2rem;
-  padding: 1rem;
-  font-size: 0.85rem;
-  overflow: auto;
-}
-
-.md-typeset code {
-  background-color: var(--md-code-bg-color);
-  color: var(--md-code-fg-color);
-  border-radius: 0.2rem;
-  padding: 0.2rem 0.4rem;
-  font-size: 0.85rem;
-}
-
-/* Lists */
-.md-typeset ul,
-.md-typeset ol {
-  margin-bottom: 1rem;
-  padding-left: 2rem;
-}
-
-.md-typeset li {
-  margin-bottom: 0.5rem;
-}
-
-/* Blockquotes */
-.md-typeset blockquote {
-  background-color: var(--md-typeset-quote-bg-color);
-  border-left: 4px solid var(--md-typeset-quote-border-color);
-  padding: 1rem;
-  margin: 1rem 0;
-}
-
-.md-typeset blockquote p {
-  margin-bottom: 0;
-}
-
-/* Navigation Menu Dropdowns */
-.md-nav__item--nested > .md-nav__link {
-    font-weight: 600;
-}
-
-.md-nav__item--nested > .md-nav__link:after {
-    color: var(--md-default-fg-color);
-}
-
-.md-nav__item--nested > .md-nav__link[aria-expanded="true"],
-.md-nav__item--nested > .md-nav__link[aria-expanded="true"]:hover,
-.md-nav__item--nested > .md-nav__link[aria-expanded="true"]:focus {
-    background-color: transparent;
-}
-
-.md-nav__list {
-    background-color: var(--md-default-bg-color);
-    border: 1px solid var(--md-border-color);
-    border-radius: 0.2rem;
-    box-shadow: 0 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
-    padding: 0.5rem 0;
-}
-
-.md-nav__list .md-nav__item .md-nav__link {
-    padding: 0.5rem 1rem;
-    color: var(--md-default-fg-color);
-}
-
-.md-nav__list .md-nav__item .md-nav__link:hover,
-.md-nav__list .md-nav__item .md-nav__link:focus {
-    background-color: var(--md-accent-fg-color--transparent);
-}
-
-/* Tables */
-.md-typeset table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
-}
-
-.md-typeset th,
-.md-typeset td {
-    border: 1px solid var(--md-border-color);
-    padding: 0.5rem 1rem;
-}
-
-.md-typeset th {
-    font-weight: 600;
-    text-align: left;
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 0.6rem;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--md-default-bg-color);
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--md-default-fg-color--light);
-  border-radius: 0.3rem;
-  border: 2px solid var(--md-default-bg-color);
-}
-
-/* Color Scheme Variables */
-:root {
-    --md-charcoal: #212A31; /* Darkest */
-    --md-slate: #2E3944; /* Dark Gray */
-    --md-teal: #124E66; /* Teal */
-    --md-light-gray: #748D92; /* Light Gray */
-    --md-off-white: #D3D9D4; /* Off-White */
+/* Responsiveness for index.md page */
+@media screen and (max-width: 980px) {
+  .md-grid {
+    justify-content: center; /* Center cards on smaller screens */
   }
-  
-  /* Custom Light Scheme */
-  :root {
-      --md-custom-light--bg-color: var(--md-off-white); /* Light Blue: Background */
-      --md-custom-light--fg-color: var(--md-charcoal); /* Darkest Blue: Text */
-      --md-custom-light--fg-color--light: var(--md-slate); /* Dark Teal: Borders */
-      --md-custom-light--header-bg-color: var(--md-charcoal); /* Darkest Blue: Header Background */
-      --md-custom-light--accent-fg-color: var(--md-teal); /* Rusty Orange: Accent Text */
-      --md-custom-light--border-color: var(--md-slate); /* Dark Teal: Border */
-      --md-custom-light--text-color: var(--md-charcoal); /* Darkest Blue: Text */
-      --md-custom-light--footer-bg-color: var(--md-light-gray); /* Light Teal: Footer Background */
-      --md-custom-light--footer-fg-color: var(--md-charcoal); /* Darkest Blue: Footer Text */
-      --md-custom-light--code-bg-color: var(--md-off-white); /* Light Blue: Code Background */
-      --md-custom-light--code-fg-color: var(--md-charcoal); /* Darkest Blue: Code Text */
-      --md-custom-light--typeset-quote-bg-color: rgba(0, 0, 0, 0.05); /* Light Blue: Blockquote Background */
-      --md-custom-light--typeset-quote-border-color: var(--md-slate); /* Dark Teal: Blockquote Border */
-  }
-  
-  /* Custom Dark Scheme */
-  :root {
-      --md-custom-dark--bg-color: var(--md-charcoal); /* Darkest Blue: Background */
-      --md-custom-dark--fg-color: var(--md-off-white); /* Light Blue: Text */
-      --md-custom-dark--fg-color--light: var(--md-light-gray); /* Light Teal: Borders */
-      --md-custom-dark--header-bg-color: var(--md-slate); /* Dark Teal: Header Background */
-      --md-custom-dark--accent-fg-color: var(--md-teal); /* Rusty Orange: Accent Text */
-      --md-custom-dark--border-color: var(--md-light-gray); /* Light Teal: Border */
-      --md-custom-dark--text-color: var(--md-off-white); /* Light Blue: Text */
-      --md-custom-dark--footer-bg-color: var(--md-charcoal); /* Darkest Blue: Footer Background */
-      --md-custom-dark--footer-fg-color: var(--md-off-white); /* Light Blue: Footer Text */
-      --md-custom-dark--code-bg-color: var(--md-slate); /* Dark Teal: Code Background */
-      --md-custom-dark--code-fg-color: var(--md-off-white); /* Light Blue: Code Text */
-      --md-custom-dark--typeset-quote-bg-color: rgba(255, 255, 255, 0.05); /* Light Blue: Blockquote Background */
-      --md-custom-dark--typeset-quote-border-color: var(--md-light-gray); /* Light Teal: Blockquote Border */
-  }
-  
-  /* Colors for Light Mode */
-  [data-md-color-scheme="custom-light"] {
-      --md-primary-fg-color: var(--md-custom-light--accent-fg-color);
-      --md-default-bg-color: var(--md-custom-light--bg-color);
-      --md-default-fg-color: var(--md-custom-light--fg-color);
-      --md-default-fg-color--light: var(--md-custom-light--fg-color--light);
-      --md-typeset-a-color: var(--md-custom-light--accent-fg-color);
-      --md-accent-fg-color: var(--md-custom-light--accent-fg-color);
-      --md-header-background-color: var(--md-custom-light--header-bg-color);
-      --md-border-color: var(--md-custom-light--border-color);
-      --md-text-color: var(--md-custom-light--text-color);
-      --md-footer-bg-color: var(--md-custom-light--footer-bg-color);
-      --md-footer-fg-color: var(--md-custom-light--footer-fg-color);
-      --md-code-bg-color: var(--md-custom-light--code-bg-color);
-      --md-code-fg-color: var(--md-custom-light--code-fg-color);
-      --md-typeset-quote-bg-color: var(--md-custom-light--typeset-quote-bg-color);
-      --md-typeset-quote-border-color: var(--md-custom-light--typeset-quote-border-color);
-  }
-  
-  /* Colors for Dark Mode */
-  [data-md-color-scheme="custom-dark"] {
-      --md-primary-fg-color: var(--md-custom-dark--accent-fg-color);
-      --md-default-bg-color: var(--md-custom-dark--bg-color);
-      --md-default-fg-color: var(--md-custom-dark--fg-color);
-      --md-default-fg-color--light: var(--md-custom-dark--fg-color--light);
-      --md-typeset-a-color: var(--md-custom-dark--accent-fg-color);
-      --md-accent-fg-color: var(--md-custom-dark--accent-fg-color);
-      --md-header-background-color: var(--md-custom-dark--header-bg-color);
-      --md-border-color: var(--md-custom-dark--border-color);
-      --md-text-color: var(--md-custom-dark--text-color);
-      --md-footer-bg-color: var(--md-custom-dark--footer-bg-color);
-      --md-footer-fg-color: var(--md-custom-dark--footer-fg-color);
-      --md-code-bg-color: var(--md-custom-dark--code-bg-color);
-      --md-code-fg-color: var(--md-custom-dark--code-fg-color);
-      --md-typeset-quote-bg-color: var(--md-custom-dark--typeset-quote-bg-color);
-      --md-typeset-quote-border-color: var(--md-custom-dark--typeset-quote-border-color);
-  }
-
-/* Grid Cards Styling */
-.grid.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Adjust minmax as needed */
-    gap: 1rem;
-}
-
-.grid.cards > * {
-    border: 1px solid var(--md-border-color);
-    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,.1);
-    padding: 1rem;
-    border-radius: 0.2rem;
-    display: flex;
-    flex-direction: column;
-    height: 350px;
-}
-
-.grid.cards .md-button {
-    margin-top: auto; /* Push the button to the bottom */
-    width: max-content;
-    color: var(--md-typeset-a-color);
-    background-color: var(--md-accent-fg-color); /* Use your accent color */
-    color: var(--md-default-bg-color); /* Use a contrasting color for text */
-    border: none; /* Remove default border */
-    padding: 0.5rem 1rem; /* Adjust padding as needed */
-    text-transform: uppercase; /* Make the text uppercase */
-    letter-spacing: 0.05rem; /* Adjust letter spacing for a more refined look */
-    font-weight: 600; /* Make the text bolder */
-    border-radius: 0.2rem; /* Add a slight border radius */
-    box-shadow: 0 0.1rem 0.2rem rgba(0,0,0,0.2); /* Add a subtle shadow */
-    transition: all 0.2s ease-in-out; /* Add a smooth transition for hover effects */
-}
-
-.grid.cards .md-button:hover {
-    background-color: var(--md-accent-fg-color--light); /* Lighten the background color on hover */
-    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.3); /* Increase shadow on hover */
-    cursor: pointer; /* Change cursor to a pointer on hover */
-}
-
-/* Responsive Styling */
-@media screen and (max-width: 767px) {
-    .md-header__inner,
-    .md-footer-meta {
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
-    }
-
-    .md-content__inner {
-        padding: 1rem;
-    }
-}
-
-@media screen and (min-width: 60em) {
-  .md-sidebar--secondary {
-    display: none;
+  .md-card {
+    width: 45%; /* Adjust card width on smaller screens */
+    margin: 0.5em;
   }
 }
 
-@media screen and (min-width: 76.25em) {
-  .md-sidebar--primary {
-    display: none;
+@media screen and (max-width: 768px) {
+  .md-card {
+    width: 90%; /* Adjust card width on smaller screens */
+    margin: 0.5em auto;
   }
 }
 
-/* Blog Post Date Styling */
-.meta {
-    font-size: 0.85rem;
-    color: var(--md-typeset-a-color);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+@media screen and (min-width: 981px) {
+  .md-grid {
+    justify-content: space-between;
+  }
+  .md-card {
+    width: 30%; /* Adjust card width on smaller screens */
+    margin: 0.5em;
+  }
 }

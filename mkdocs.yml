@@ -1,103 +1,123 @@
+# Project information
 site_name: Colter+
-site_description: Personal blog and project portfolio of Colter Dahlberg.
-site_author: Colter
-site_url: https://colterd.github.io/colterplus/
+site_description: >-
+  The next-generation of free computer code.
+site_url: https://colterplus.github.io/
 
-repo_url: https://github.com/ColterD/colterplus
-repo_name: ColterD/colterplus
+# Repository
+repo_name: colterplus/colterplus.github.io
+repo_url: https://github.com/colterplus/colterplus.github.io
+edit_uri: blob/main/docs/
 
-nav:
-  - Home: index.md
-  - About: about.md
-  - Resume: resume.md
-  - Projects: projects.md
-  - Blog:
-    - Blog Home: blog.md
-    - Posts:
-      - First Post: blog/first-post.md
-      - Second Post: blog/second-post.md
+# Copyright
+copyright: Copyright © 2016 - 2024 Colter+
 
+# Configuration
 theme:
   name: material
+  custom_dir: docs/overrides
+  favicon: assets/images/favicon.ico
+  logo: assets/images/logo.svg
+
+  icon:
+    repo: fontawesome/brands/github
+
+  # Static files
+  static_templates:
+    - 404.html
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+
+  # Default values, taken from mkdocs_theme.yml
+  language: en
   features:
-    - navigation.instant
-    - navigation.tabs
-    - navigation.top
+    - content.code.annotate
+    - content.tabs.link
     - navigation.footer
-    - navigation.tracking
-    - navigation.expand
     - navigation.indexes
     - navigation.sections
-    - navigation.path
-    - toc.follow
-    - toc.integrate
-    - search.suggest
+    - navigation.tabs
+    - navigation.top
     - search.highlight
     - search.share
-    - content.code.copy
-    - content.code.annotate
-    - content.tabs.link
-    - content.tooltips
-    - header.autohide
-    - content.action.edit
-    - content.tabs.link
-    - content.tooltips
-    - content.code.annotate
-  language: en
+    - search.suggest
+
   palette:
-    - media: "(prefers-color-scheme)"
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: rgb(33, 42, 49)
+      accent: rgb(46, 57, 68)
       toggle:
-        icon: material/brightness-auto
+        icon: material/lightbulb
         name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
+      primary: rgb(33, 42, 49)
+      accent: rgb(46, 57, 68)
       toggle:
-        icon: material/brightness-7
+        icon: material/lightbulb-outline
         name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      toggle:
-        icon: material/brightness-4
-        name: Switch to system preference
   font:
     text: Roboto
     code: Roboto Mono
-  logo: assets/logo.png
-  favicon: assets/favicon.png
-  icon:
-    repo: fontawesome/brands/github
-    docker: material/docker
-    project: fontawesome/solid/diagram-project
-    resume: fontawesome/solid/file-lines
-    envelope: fontawesome/solid/envelope
-    gear: fontawesome/solid/gear
 
-extra_css:
-  - stylesheets/extra.css
-
+# Plugins
 plugins:
-  - search
+  - search:
+      lang:
+        - en
 
+# Extensions
 markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.tasklist:
-      custom_checkbox: true
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
-  - pymdownx.inlinehilite
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - attr_list
-  - md_in_html
-  - toc:
-      permalink: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Page tree
+nav:
+  - Home: index.md
+  - About: about.md
+  - License: license.md
+  - Privacy: privacy.md
+  - Code of Conduct: code-of-conduct.md
+  - Contributing: contributing.md
+  - Security: security.md
+  - Status: status.md
+  - Contact: contact.md
+
+# Google analytics setup
+extra:
+  analytics:
+    provider: google
+    property: !ENV GOOGLE_ANALYTICS_KEY
