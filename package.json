@@ -1,19 +1,43 @@
 {
-  "name": "colterplus",
+  "name": "docs",
   "version": "1.0.0",
-  "description": "Personal blog and resource collection",
+  "description": "Documentation site",
   "main": "index.js",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
   },
   "keywords": [],
-  "author": "ColterPlus",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "vitepress": "^1.0.0-rc.40",
-    "nprogress": "^0.2.0"
+    "@types/node": "^20.8.7",
+    "vitepress": "^1.0.0-rc.22",
+    "sass": "^1.69.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.5.0",
+    "lz-string": "^1.5.0",
+    "monaco-editor": "^0.44.0",
+    "jszip": "^3.10.1",
+    "vue": "^3.3.4",
+    "markdown-it": "^13.0.2",
+    "prismjs": "^1.29.0",
+    "chart.js": "^4.4.0",
+    "pdf-lib": "^1.17.1",
+    "sortablejs": "^1.15.0",
+    "swiper": "^10.3.1",
+    "d3": "^7.8.5",
+    "gsap": "^3.12.2",
+    "highlight.js": "^11.9.0",
+    "@ffmpeg/ffmpeg": "^0.12.7",
+    "pdfjs-dist": "^3.11.174",
+    "socket.io-client": "^4.7.2",
+    "firebase": "^10.5.0",
+    "intersection-observer": "^0.12.2",
+    "vue-virtual-scroller": "^2.0.0-beta.8"
   }
 }

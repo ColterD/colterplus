@@ -1,25 +1,29 @@
 import { defineConfig } from 'vitepress'
 import { execSync } from 'child_process'
+import { generateRSSFeed } from './theme/rss'
 
-const feedback = 'Made with ❤ and <a href="https://vitepress.dev/" target="_blank">VitePress</a>'
-const isGitRepo = (() => {
+// Read time estimate function
+function getReadingTime(content) {
+  const words = content.match(/\w+/g)?.length ?? 0
+  const time = Math.ceil(words / 200) // Assuming 200 words per minute
+  return `${time} min read`
+}
+
+const getGitRevision = () => {
   try {
-    execSync('git rev-parse --git-dir')
-    return true
+    return execSync('git rev-parse --short HEAD').toString().trim()
   } catch {
-    return false
+    return 'dev'
   }
-})()
+}
 
-const footerConfig = isGitRepo
-  ? {
-      message: `${feedback} (rev: ${execSync('git rev-parse --short HEAD').toString().trim()})`,
-      copyright: `© ${new Date().getFullYear()}, <a href="/">Estd 2023</a>`
-    }
-  : {
-      message: feedback,
-      copyright: `© ${new Date().getFullYear()} ColterPlus`
-    }
+const footerConfig = {
+  message: 'Made with ❤ and <a href="https://vitepress.dev/" target="_blank">VitePress</a>',
+  copyright: `
+    GitHub Version: ${getGitRevision()}<br>
+    © ${new Date().getFullYear()} ColterPlus
+  `
+}
 
 export default defineConfig({
   title: "C+",
@@ -50,14 +54,49 @@ export default defineConfig({
     ['meta', { property: 'og:description', content: 'Personal blog and resource collection' }],
     ['meta', { property: 'og:image', content: '/og-image.png' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:site', content: '@YourTwitterHandle' }],
+    ['meta', { name: 'twitter:creator', content: '@YourTwitterHandle' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:site_name', content: 'ColterPlus' }],
     ['link', { rel: 'preload', href: '/logo.png', as: 'image' }],
     ['link', { rel: 'preload', href: '/og-image.png', as: 'image' }],
+    ['link', { 
+      rel: 'alternate', 
+      type: 'application/rss+xml', 
+      href: '/feed.xml', 
+      title: 'RSS Feed' 
+    }],
+    
+    // JSON-LD structured data
+    ['script', { type: 'application/ld+json' }, JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ColterPlus",
+      "url": "https://colterplus.com",
+      "description": "My Digital Universe - Curated",
+      "author": {
+        "@type": "Person",
+        "name": "ColterPlus"
+      }
+    })]
   ],
 
   markdown: {
     lineNumbers: true,
     headers: {
       level: [0, 2]
+    },
+    config: (md) => {
+      // Add reading time
+      md.renderer.rules.heading_open = (tokens, idx, options, env, self) => {
+        const token = tokens[idx]
+        if (token.tag === 'h1') {
+          const content = tokens[idx + 1].content
+          const readingTime = getReadingTime(content)
+          return `<${token.tag}>${readingTime} · `
+        }
+        return self.renderToken(tokens, idx, options)
+      }
     }
   },
 
@@ -70,6 +109,9 @@ export default defineConfig({
           'vendor': ['vue', 'vitepress']
         }
       }
+    },
+    async onGenerated(siteConfig) {
+      await generateRSSFeed(siteConfig)
     }
   },
 
@@ -116,7 +158,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/colterplus' }
+      { icon: 'github', link: 'https://github.com/colterd' }
     ],
 
     footer: footerConfig,
@@ -127,7 +169,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/colterplus/docs/edit/main/docs/:path',
+      pattern: 'https://github.com/colterd/colterplus/edit/main/docs/:path',
       text: 'Edit this page on GitHub'
     }
   }

@@ -1,8 +1,39 @@
 import DefaultTheme from 'vitepress/theme'
+import Search from './components/Search.vue'
+import TableOfContents from './components/TableOfContents.vue'
+import PageTransition from './components/PageTransition.vue'
+import PageSkeleton from './components/PageSkeleton.vue'
+import AnimatedCard from './components/AnimatedCard.vue'
+import FloatingActions from './components/FloatingActions.vue'
+import NotificationSystem from './components/NotificationSystem.vue'
+import ImageLightbox from './components/ImageLightbox.vue'
+import CodeBlock from './components/CodeBlock.vue'
+import ReadingProgress from './components/ReadingProgress.vue'
+import ThemeCustomizer from './components/ThemeCustomizer.vue'
+import ContentSuggestions from './components/ContentSuggestions.vue'
+import ContentEngagement from './components/ContentEngagement.vue'
+import SearchAnalytics from './components/SearchAnalytics.vue'
+import LearningProgress from './components/LearningProgress.vue'
+import AnalyticsDashboard from './components/AnalyticsDashboard.vue'
+import UserPreferences from './components/UserPreferences.vue'
+import PDFExporter from './components/PDFExporter.vue'
+import ContentEmbed from './components/ContentEmbed.vue'
+import ContentVersion from './components/ContentVersion.vue'
+import { createI18nInstance } from './i18n'
+import LanguageSwitch from './components/LanguageSwitch.vue'
 import './custom.css'
 import NProgress from 'nprogress'
 import { useRouter } from 'vitepress'
 import { onMounted, defineComponent, ref } from 'vue'
+import SocialInteraction from './components/SocialInteraction.vue'
+import MediaGallery from './components/MediaGallery.vue'
+import DataExplorer from './components/DataExplorer.vue'
+import ContentWizard from './components/ContentWizard.vue'
+import CommentSystem from './components/CommentSystem.vue'
+import SearchExplorer from './components/SearchExplorer.vue'
+import NotificationCenter from './components/NotificationCenter.vue'
+import FeedbackWidget from './components/FeedbackWidget.vue'
+import CodePlayground from './components/CodePlayground.vue'
 
 // Error Boundary Component
 const ErrorBoundary = defineComponent({
@@ -78,7 +109,40 @@ export default {
   enhanceApp({ app }) {
     app.component('ErrorBoundary', ErrorBoundary)
     app.component('BackToTop', BackToTop)
-
+    app.component('Search', Search)
+    app.component('TableOfContents', TableOfContents)
+    app.component('PageTransition', PageTransition)
+    app.component('PageSkeleton', PageSkeleton)
+    app.component('AnimatedCard', AnimatedCard)
+    app.component('FloatingActions', FloatingActions)
+    app.component('NotificationSystem', NotificationSystem)
+    app.component('ImageLightbox', ImageLightbox)
+    app.component('CodeBlock', CodeBlock)
+    app.component('ReadingProgress', ReadingProgress)
+    app.component('ThemeCustomizer', ThemeCustomizer)
+    app.component('ContentSuggestions', ContentSuggestions)
+    app.component('ContentEngagement', ContentEngagement)
+    app.component('SearchAnalytics', SearchAnalytics)
+    app.component('LearningProgress', LearningProgress)
+    app.component('AnalyticsDashboard', AnalyticsDashboard)
+    app.component('apexchart', VueApexCharts)
+    app.component('UserPreferences', UserPreferences)
+    app.component('PDFExporter', PDFExporter)
+    app.component('ContentEmbed', ContentEmbed)
+    app.component('ContentVersion', ContentVersion)
+    const i18n = createI18nInstance()
+    app.use(i18n)
+    app.component('LanguageSwitch', LanguageSwitch)
+    app.component('SocialInteraction', SocialInteraction)
+    app.component('MediaGallery', MediaGallery)
+    app.component('DataExplorer', DataExplorer)
+    app.component('ContentWizard', ContentWizard)
+    app.component('CommentSystem', CommentSystem)
+    app.component('SearchExplorer', SearchExplorer)
+    app.component('NotificationCenter', NotificationCenter)
+    app.component('FeedbackWidget', FeedbackWidget)
+    app.component('CodePlayground', CodePlayground)
+    
     // Global error handler
     app.config.errorHandler = (error, instance, info) => {
       console.error('Vue error:', { error, instance, info })
